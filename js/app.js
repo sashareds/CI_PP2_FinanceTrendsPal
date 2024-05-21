@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#stock-form').on('submit', function(event) {
         event.preventDefault();
         const symbol = $('#symbol').val().toUpperCase();
+        console.log(`Form submitted with symbol: ${symbol}`);
         fetchStockData(symbol);
     });
 });
@@ -9,6 +10,8 @@ $(document).ready(function() {
 function fetchStockData(symbol) {
     const apiKey = 'JITGUBI3HN04HP10';
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
+    
+    console.log(`Fetching stock data for symbol: ${symbol}`);
     
     $.getJSON(url, function(data) {
         if (data['Error Message']) {
