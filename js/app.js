@@ -54,8 +54,8 @@ function displayNews(articles) {
         const articleElement = `
             <div class="article">
                 <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
-                <p>${article.description}</p>
-                <p><small>Source: ${article.source}</small></p>
+                <p>${article.summary}</p>
+                <p><small>Source: ${article.publisher}</small></p>
             </div>
         `;
         $('#news-articles').append(articleElement);

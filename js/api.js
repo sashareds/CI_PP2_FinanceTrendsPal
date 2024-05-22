@@ -1,6 +1,6 @@
 // Define the API key and region
 const apiKey = 'b5d7102911msh298c5e392dc941cp1e1682jsn72ee10f12bdc';
-const region = 'US';
+const region = 'EU';
 
 // Function to fetch stock symbols for autocomplete
 function fetchStockSymbols(query, callback) {
@@ -49,6 +49,13 @@ function fetchStockData(symbol, retryCount = 0) {
     $.ajax(settings).done(function (data) {
         console.log('Stock data fetched:', data);
 
+        if (!data.meta) {
+            console.error('No meta data found in response:', data);
+            alert('Failed to fetch stock data. No meta data found.');
+            $('#loading').hide();
+            return;
+        }
+
         const prices = data.prices.reverse();
         const labels = prices.map(price => new Date(price.date * 1000).toISOString().split('T')[0]);
         const closePrices = prices.map(price => price.close);
@@ -81,32 +88,28 @@ function fetchStockNews(symbol, retryCount = 0) {
     const settings = {
         async: true,
         crossDomain: true,
-        url: `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/get-news?region=${region}&category=${symbol}`,
-        method: 'GET',
+        url: `https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?region=${region}&snippetCount=3&s=${symbol}`,
+        method: 'POST',
         headers: {
+            'content-type': 'text/plain',
             'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
-        }
+        },
+        data: ''
     };
-    
-    // {
-    //     async: true,
-    //     crossDomain: true,
-    //     url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?region=US&snippetCount=28',
-    //     method: 'POST',
-    //     headers: {
-    //         'content-type': 'text/plain',
-    //         'X-RapidAPI-Key': 'b5d7102911msh298c5e392dc941cp1e1682jsn72ee10f12bdc',
-    //         'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
-    //     },
-    //     data: 'Pass in the value of uuids field returned right in this endpoint to load the next page, or leave empty to load first page'
-    // };
 
     console.log('Fetching news articles for symbol:', symbol);
 
     $.ajax(settings).done(function (data) {
         console.log('News data fetched:', data);
-        displayNews(data.items.result.slice(0, 3));
+
+        if (!data.main || !data.main.stream) {
+            console.error('No valid news data found in response:', data);
+            alert('Failed to fetch news. No valid news data found.');
+            return;
+        }
+
+        displayNews(data.main.stream.slice(0, 3));
     }).fail(function (jqxhr, textStatus, error) {
         if (jqxhr.status === 429 && retryCount < 5) {
             // Retry after a delay if rate limited (429 error)
