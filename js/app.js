@@ -12,7 +12,7 @@ function fetchStockData(symbol) {
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
     
     console.log(`Fetching stock data for symbol: ${symbol}`);
-    
+
     $.getJSON(url, function(data) {
         if (data['Error Message']) {
             alert('Invalid stock symbol. Please try again.');
@@ -26,6 +26,8 @@ function fetchStockData(symbol) {
         displayChart(symbol, labels, prices);
     });
 }
+
+
 
 function displayChart(symbol, labels, data) {
     const ctx = $('#stockChart')[0].getContext('2d');
