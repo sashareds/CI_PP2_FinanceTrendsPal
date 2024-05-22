@@ -1,10 +1,9 @@
 $(document).ready(function() {
-    // Fetch stock symbols dynamically
-    fetchStockSymbols().then(stockSymbols => {
-        // Initialize autocomplete for the stock symbol input field
-        $('#symbol').autocomplete({
-            source: stockSymbols
-        });
+    // Set up autocomplete for the stock symbol input field
+    $('#symbol').autocomplete({
+        source: function(request, response) {
+            fetchStockSymbols(request.term, response);
+        }
     });
 
     // Handle form submission to fetch stock data
