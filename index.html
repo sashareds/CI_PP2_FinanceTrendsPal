@@ -1,25 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Stock Trends</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StockTrends Pal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="A simple way to check trends and news of your favorite stocks">
+
+    <!-- Adding Open Graph meta tags -->
+    <meta property="og:title" content="StockTrends Pal | Stay tuned with the trends">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <!-- Add .thum.io thumbnail -->
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Adding jQuery and chart libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Adding Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
 <body>
     <div class="container">
-        <h1>Stock Trends</h1>
-        <form id="stock-form">
-            <label for="symbol">Enter Stock Symbol (e.g., AAPL, MSFT):</label>
-            <input type="text" id="symbol" name="symbol" required>
-            <button type="submit">Get Trend</button>
-        </form>
-        <canvas id="stockChart" width="400" height="200"></canvas>
+        <div class="sidebar">
+            <form id="stock-form">
+                <input type="text" id="symbol" name="symbol" placeholder="Search stocks" required>
+                <button type="submit">Search</button>
+            </form>
+            <ul id="watchlist">
+                <!-- Watchlist items will be dynamically inserted here -->
+            </ul>
+        </div>
+        <div class="content">
+            <div id="loading" style="display:none;">Loading...</div>
+            <canvas id="stockChart" style="display:none;"></canvas>
+            <div id="news" style="display:none;">
+                <h2>Latest News</h2>
+                <div id="news-articles"></div>
+            </div>
+        </div>
     </div>
-    <script src="/js/app.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
