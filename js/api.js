@@ -1,6 +1,6 @@
 // Define the API key and region
 const apiKey = 'b5d7102911msh298c5e392dc941cp1e1682jsn72ee10f12bdc';
-const region = 'EU';
+const region = 'US';
 
 // Function to fetch stock symbols for autocomplete
 function fetchStockSymbols(query, callback) {
@@ -88,6 +88,19 @@ function fetchStockNews(symbol, retryCount = 0) {
             'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
         }
     };
+    
+    // {
+    //     async: true,
+    //     crossDomain: true,
+    //     url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?region=US&snippetCount=28',
+    //     method: 'POST',
+    //     headers: {
+    //         'content-type': 'text/plain',
+    //         'X-RapidAPI-Key': 'b5d7102911msh298c5e392dc941cp1e1682jsn72ee10f12bdc',
+    //         'X-RapidAPI-Host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+    //     },
+    //     data: 'Pass in the value of uuids field returned right in this endpoint to load the next page, or leave empty to load first page'
+    // };
 
     console.log('Fetching news articles for symbol:', symbol);
 
