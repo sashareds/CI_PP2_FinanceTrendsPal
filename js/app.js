@@ -1,17 +1,10 @@
 $(document).ready(function() {
-    const stockSymbols = [
-        { symbol: 'AAPL', name: 'Apple' },
-        { symbol: 'MSFT', name: 'Microsoft' },
-        { symbol: 'TSLA', name: 'Tesla' },
-        { symbol: 'AMZN', name: 'Amazon' },
-        { symbol: 'KO', name: 'Coca Cola' },
-        { symbol: 'GOOGL', name: 'Google' },
-        { symbol: 'NKE', name: 'Nike' }
-    ];
-
-    // Initialize autocomplete for the stock symbol input field
-    $('#symbol').autocomplete({
-        source: stockSymbols.map(stock => stock.symbol)
+    // Fetch stock symbols dynamically
+    fetchStockSymbols().then(stockSymbols => {
+        // Initialize autocomplete for the stock symbol input field
+        $('#symbol').autocomplete({
+            source: stockSymbols
+        });
     });
 
     // Handle form submission to fetch stock data
@@ -21,8 +14,18 @@ $(document).ready(function() {
         fetchStockData(symbol);
     });
 
-    // Populate the watchlist and fetch initial stock prices
-    stockSymbols.forEach((stock, index) => {
+    // Populate the watchlist with predefined symbols and fetch initial stock prices
+    const predefinedSymbols = [
+        { symbol: 'AAPL', name: 'Apple' },
+        { symbol: 'MSFT', name: 'Microsoft' },
+        { symbol: 'TSLA', name: 'Tesla' },
+        { symbol: 'AMZN', name: 'Amazon' },
+        { symbol: 'KO', name: 'Coca Cola' },
+        { symbol: 'GOOGL', name: 'Google' },
+        { symbol: 'NKE', name: 'Nike' }
+    ];
+
+    predefinedSymbols.forEach((stock, index) => {
         $('#watchlist').append(`
             <li class="watchlist-item" data-symbol="${stock.symbol}">
                 <span>${stock.name}</span>

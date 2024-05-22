@@ -106,112 +106,98 @@ html {
 	margin-bottom: 0em;
   }
 
-  /* body {
+
+body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-} */
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
 }
 
 .container {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 
 .sidebar {
-  width: 25%;
-  background-color: #fff;
-  padding: 1rem;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    width: 25%;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .content {
-  width: 75%;
-  padding: 2rem;
-  overflow-y: auto;
-}
-/* 
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+    width: 75%;
+    padding: 2rem;
+    overflow-y: auto;
 }
 
 p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-} */
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
 
 form {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 input[type="text"] {
-  padding: 0.5rem;
-  width: calc(100% - 1rem);
-  margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    width: calc(100% - 1rem);
+    margin-bottom: 0.5rem;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 #watchlist {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .watchlist-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eaeaea;
-  cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
 }
 
 .watchlist-item:hover {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 #loading {
-  margin-top: 1rem;
-  font-size: 1.2rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
 }
 
 #stockChart {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 .article {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .article h3 {
-  margin: 0;
+    margin: 0;
 }
 
 .article p {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
