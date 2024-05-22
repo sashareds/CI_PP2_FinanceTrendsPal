@@ -29,7 +29,18 @@ function fetchStockData(symbol) {
         const labels = Object.keys(timeSeries).reverse();
         const prices = labels.map(date => parseFloat(timeSeries[date]['4. close']));
 
-        displayChart(symbol, labels, prices);
+        fetchExchangeRate(prices, labels, symbol);
+    });
+}
+
+function fetchExchangeRate(prices, labels, symbol) {
+    const apiKey = 'JITGUBI3HN04HP10';
+    const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EUR&apikey=${apiKey}`;
+
+    $.getJSON(url, function(data) {
+        const exchangeRate = parseFloat(data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
+        const pricesInEuro = prices.map(price => price * exchangeRate);
+        displayChart(symbol, labels, pricesInEuro);
     });
 }
 
@@ -40,7 +51,7 @@ function displayChart(symbol, labels, data) {
         data: {
             labels: labels,
             datasets: [{
-                label: `${symbol} Stock Price`,
+                label: `${symbol} Stock Price (EUR)`,
                 data: data,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -60,7 +71,7 @@ function displayChart(symbol, labels, data) {
                 y: {
                     title: {
                         display: true,
-                        text: 'Price (USD)'
+                        text: 'Price (EUR)'
                     }
                 }
             }
